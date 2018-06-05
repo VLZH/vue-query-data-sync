@@ -36,12 +36,13 @@ export default {
             }
             const clear_value = {};
             for (let key in this.$data) {
-                if (ignoreKey.call(this, key)) return;
+                if (ignoreKey.call(this, key)) continue;
                 const value = this.$data[key];
                 if (isCoolVal(value)) {
                     clear_value[key] = value;
                 }
             }
+            debugger;
             this.$router.push({ query: clear_value });
         };
         Vue.prototype.$getFromQuery = function() {
@@ -53,7 +54,7 @@ export default {
             }
             if (!this.$route.query) return;
             for (const key in this.$route.query) {
-                if (ignoreKey.call(this, key)) return;
+                if (ignoreKey.call(this, key)) continue;
                 if (!this.hasOwnProperty(key)) continue;
                 const value = this.$route.query[key];
                 this[key] = toCoolVal(value);

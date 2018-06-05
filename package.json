@@ -1,6 +1,6 @@
 {
   "name": "vue-query-data-sync",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Plugin for sync query parameters and a data in vue component",
   "main": "index.js",
   "repository": "https://github.com/VLZH/vue-query-data-sync",
@@ -10,6 +10,6 @@
     "lodash": "^4.17.10"
   },
   "prettier": {
-      "tabWidth": 4
+    "tabWidth": 4
   }
 }
