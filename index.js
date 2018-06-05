@@ -4,6 +4,8 @@ import isBoolean from "lodash/isBoolean";
 import isArray from "lodash/isArray";
 import toNumber from "lodash/toNumber";
 
+const settings_keys = ["_syncInclude", "_syncExclude"];
+
 const isCoolVal = val =>
     isString(val) || isNumber(val) || isBoolean(val) || isArray(val);
 
@@ -13,6 +15,15 @@ const toCoolVal = val => {
     if (nval) return nval;
     return val;
 };
+
+function ignoreKey(key) {
+    if (settings_keys.includes(key)) return true;
+    // the exclude rule is more important than the include rule
+    if (this.$data._syncExclude && this.$data._syncExclude.includes(key))
+        return true;
+    if (this.$data._syncInclude && !this.$data._syncInclude.includes(key))
+        return true;
+}
 
 export default {
     install(Vue, options) {
@@ -25,6 +36,7 @@ export default {
             }
             const clear_value = {};
             for (let key in this.$data) {
+                if (ignoreKey.call(this, key)) return;
                 const value = this.$data[key];
                 if (isCoolVal(value)) {
                     clear_value[key] = value;
@@ -41,6 +53,7 @@ export default {
             }
             if (!this.$route.query) return;
             for (const key in this.$route.query) {
+                if (ignoreKey.call(this, key)) return;
                 if (!this.hasOwnProperty(key)) continue;
                 const value = this.$route.query[key];
                 this[key] = toCoolVal(value);
