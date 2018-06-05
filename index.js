@@ -42,7 +42,6 @@ export default {
                     clear_value[key] = value;
                 }
             }
-            debugger;
             this.$router.push({ query: clear_value });
         };
         Vue.prototype.$getFromQuery = function() {
