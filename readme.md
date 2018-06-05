@@ -1,5 +1,6 @@
 # Vue query data sync
 
+### WARNING !
 If you in looking for some lib for your project. Do not use this code! Quality of this code is very low
 
 ## How to use
@@ -14,8 +15,13 @@ import DataQueryString from "./plugins/data_query_sync";
 // in component
 module.exports = {
     data: {
+        some_another_property: 0,
         category__id: 0,
-        service__id: 0
+        service__id: 0,
+        // white list
+        _syncInclude: ["order_by", "categories__id"]
+        // black list
+        // _syncExclude: ["some_another_property"]
     },
     watch: {
         // Push data to querystring on change in some properties
