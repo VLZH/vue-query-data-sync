@@ -1,6 +1,6 @@
 {
   "name": "vue-query-data-sync",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Plugin for sync query parameters and a data in vue component",
   "main": "index.js",
   "repository": "https://github.com/VLZH/vue-query-data-sync",
